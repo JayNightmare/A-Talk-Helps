@@ -1,0 +1,297 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+/* Navigation */
+#navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #2c3e50;
+    background-color: #f5f7fa;
+}
+
+.nav-link.active {
+    color: #3498db;
+    font-weight: 500;
+}
+
+/* Main content */
+#main-content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* New post section */
+#new-post-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+#new-post-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+#new-post-text {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.post-submit-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.post-submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.error-msg {
+    color: #e74c3c;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Feed section */
+#feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.alias {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.timestamp {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.post-content {
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.post-actions button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.post-actions button:hover {
+    background-color: #f5f7fa;
+    color: #2c3e50;
+}
+
+/* Comments section */
+.comments-container {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.comment-text {
+    width: 100%;
+    min-height: 60px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Report button */
+.report-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.report-btn:hover {
+    background-color: #fde8e8;
+    color: #e74c3c;
+}
+
+/* Report dialog */
+.report-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.report-dialog-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.report-dialog h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.report-dialog select,
+.report-dialog textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+
+.report-dialog textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.report-dialog-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.report-dialog-actions button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.report-dialog-actions button:first-child {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.report-dialog-actions button:first-child:hover {
+    background-color: #c0392b;
+}
+
+.report-dialog-actions button:last-child {
+    background-color: #f5f7fa;
+    color: #666;
+}
+
+.report-dialog-actions button:last-child:hover {
+    background-color: #e5e7eb;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    #navbar {
+        padding: 1rem;
+    }
+
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 0.75rem;
+    }
+
+    #main-content {
+        margin: 1rem auto;
+    }
+
+    .post-card {
+        padding: 1rem;
+    }
+} 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Helps - Your Profile</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/profile.css">
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-brand">Talking Helps</div>
+        <div class="nav-links">
+            <a href="./index.html" class="nav-link">Home</a>
+            <a href="./support.html" class="nav-link">Support</a>
+            <a href="./profile.html" class="nav-link active">Profile</a>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <h2>Your Profile</h2>
+        <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="posts">My Posts</button>
+            <button class="tab-btn" data-tab="comments">My Comments</button>
+            <button class="tab-btn" data-tab="likes">My Likes</button>
+        </div>
+
+        <div id="tab-content">
+            <!-- Content will be loaded here dynamically -->
+        </div>
+    </main>
+
+    <script src="/scripts/profile.js"></script>
+</body>
+</html> 

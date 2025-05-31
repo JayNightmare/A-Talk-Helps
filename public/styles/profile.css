@@ -1,0 +1,109 @@
+/* Profile page specific styles */
+.profile-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: #666;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: #f5f7fa;
+    color: #2c3e50;
+}
+
+.tab-btn.active {
+    background-color: #3498db;
+    color: #fff;
+}
+
+#tab-content {
+    min-height: 200px;
+}
+
+/* Profile content styles */
+.profile-item {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.profile-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.profile-item-content {
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+.profile-item-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile-item-actions button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.profile-item-actions button:hover {
+    background-color: #f5f7fa;
+    color: #2c3e50;
+}
+
+.profile-item-actions button.delete {
+    color: #e74c3c;
+}
+
+.profile-item-actions button.delete:hover {
+    background-color: #fde8e8;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.empty-state p {
+    margin-bottom: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .profile-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+
+    .profile-item {
+        padding: 1rem;
+    }
+} 

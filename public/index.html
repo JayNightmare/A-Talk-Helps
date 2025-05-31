@@ -7,20 +7,34 @@
     <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-brand">Talking Helps</div>
-        <div class="nav-links">
-            <a href="./index.html" class="nav-link active">Home</a>
-            <a href="./support.html" class="nav-link">Support</a>
-            <a href="./profile.html" class="nav-link">Profile</a>
+    <aside id="sidebar">
+        <div class="nav-brand">💬 Talking Helps</div>
+        <nav class="nav-links">
+            <a href="./index.html" class="nav-link active">
+                <span>🏠</span> Home
+            </a>
+            <a href="./support.html" class="nav-link">
+                <span>🆘</span> Support
+            </a>
+            <a href="./profile.html" class="nav-link">
+                <span>👤</span> Profile
+            </a>
+        </nav>
+        <div class="nav-footer">
+            <button id="logout-btn" class="nav-link" onclick="handleLogout()">
+                <span>🚪</span> Logout
+            </button>
         </div>
-    </nav>
+    </aside>
 
     <main id="main-content">
+        <header class="content-header">
+            <h1># general-chat</h1>
+        </header>
+
         <section id="new-post-section">
-            <h2>Share Your Thoughts</h2>
-            <textarea id="new-post-text" placeholder="How are you feeling today?" maxlength="1000"></textarea>
-            <button class="post-submit-btn">Post Anonymously</button>
+            <textarea id="new-post-text" placeholder="Share your thoughts anonymously..." maxlength="1000"></textarea>
+            <button class="post-submit-btn">Send Message</button>
             <p id="new-post-error" class="error-msg"></p>
         </section>
 
@@ -29,6 +43,6 @@
         </section>
     </main>
 
-    <script src="/scripts/main.js"></script>
+    <script src="./scripts/main.js"></script>
 </body>
-</html> 
+</html>

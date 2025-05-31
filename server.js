@@ -1,6 +1,7 @@
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const session = require('express-session');
+require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const createDOMPurify = require('dompurify');
@@ -91,6 +92,8 @@ async function connectToMongo() {
     await db.collection('posts').createIndex({ status: 1 });
     await db.collection('reports').createIndex({ contentId: 1, status: 1 });
     await db.collection('reports').createIndex({ createdAt: -1 });
+    await db.collection('users').createIndex({ key: 1 }, { unique: true });
+    await db.collection('users').createIndex({ createdAt: -1 });
   } catch (err) {
     console.error('MongoDB connection error:', err);
     process.exit(1);
@@ -104,33 +107,132 @@ app.use((req, res, next) => {
   next();
 });
 
+// Authentication middleware
+const requireAuth = (req, res, next) => {
+    if (!req.session.userKey) {
+        return res.redirect('/login');
+    }
+    next();
+};
+
 // Routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/profile', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'profile.html'));
+app.get('/profile', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'profile.html'));
 });
 
-app.get('/support', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'support.html'));
+app.get('/support', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'support.html'));
+});
+
+app.get('/login', (req, res) => {
+    if (req.session.userKey) {
+        return res.redirect('/');
+    }
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+// Auth API Routes
+app.get('/api/auth/status', (req, res) => {
+    res.json({ isLoggedIn: !!req.session.userKey });
+});
+
+app.post('/api/auth/signup', async (req, res) => {
+    try {
+        const { key } = req.body;
+        if (!key) {
+            return res.status(400).json({ message: 'Key is required' });
+        }
+
+        // Check if key already exists
+        const existingUser = await db.collection('users').findOne({ key });
+        if (existingUser) {
+            return res.status(400).json({ message: 'This key is already in use' });
+        }
+
+        // Create new user
+        const user = {
+            key,
+            createdAt: new Date(),
+            lastLogin: new Date()
+        };
+
+        await db.collection('users').insertOne(user);
+
+        // Set session
+        req.session.userKey = key;
+        res.json({ message: 'Account created successfully' });
+    } catch (err) {
+        console.error('Signup failed:', err);
+        res.status(500).json({ message: 'Failed to create account' });
+    }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+    try {
+        const { key } = req.body;
+        if (!key) {
+            return res.status(400).json({ message: 'Key is required' });
+        }
+
+        // Find user by key
+        const user = await db.collection('users').findOne({ key });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid key' });
+        }
+
+        // Update last login
+        await db.collection('users').updateOne(
+            { key },
+            { $set: { lastLogin: new Date() } }
+        );
+
+        // Set session
+        req.session.userKey = key;
+        res.json({ message: 'Logged in successfully' });
+    } catch (err) {
+        console.error('Login failed:', err);
+        res.status(500).json({ message: 'Failed to log in' });
+    }
+});
+
+app.post('/api/auth/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Logout failed:', err);
+            return res.status(500).json({ message: 'Failed to log out' });
+        }
+        res.json({ message: 'Logged out successfully' });
+    });
 });
 
 // API Routes
-app.get('/api/alias', (req, res) => {
-  if (req.session.alias) {
-    return res.json({ alias: req.session.alias });
-  }
-  
-  // Generate new alias
-  const adjectives = ['Calm', 'Blue', 'Silent', 'Brave', 'Quiet', 'Gentle', 'Wise', 'Kind'];
-  const nouns = ['Phoenix', 'Cloud', 'Forest', 'River', 'Owl', 'Star', 'Moon', 'Wind'];
-  const randomNum = Math.floor(Math.random() * 999) + 1;
-  const alias = `${adjectives[Math.floor(Math.random() * adjectives.length)]}${nouns[Math.floor(Math.random() * nouns.length)]}_${randomNum}`;
-  
-  req.session.alias = alias;
-  res.json({ alias });
+app.get('/api/alias', requireAuth, async (req, res) => {
+    try {
+        if (req.session.alias) {
+            return res.json({ alias: req.session.alias });
+        }
+
+        // Get user's key
+        const user = await db.collection('users').findOne({ key: req.session.userKey });
+        if (!user) {
+            return res.status(401).json({ message: 'User not found' });
+        }
+
+        // Generate deterministic alias based on user's key
+        const keyEmojis = user.key.match(/[^\d]+/g).join(''); // Get emojis from key
+        const keyNumbers = user.key.match(/\d+/g).join('');   // Get numbers from key
+        const alias = `Anonymous_${keyEmojis}_${keyNumbers}`;
+
+        req.session.alias = alias;
+        res.json({ alias });
+    } catch (err) {
+        console.error('Failed to get alias:', err);
+        res.status(500).json({ message: 'Failed to get alias' });
+    }
 });
 
 // Posts API

@@ -1,23 +1,21 @@
-// Support page JavaScript
-document.addEventListener('DOMContentLoaded', () => {
-    // Add smooth scrolling to all links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+// Logout function
+async function handleLogout() {
+    try {
+        const response = await fetch('/api/auth/logout', {
+            method: 'POST'
         });
-    });
+        
+        if (response.ok) {
+            window.location.href = '/login';
+        } else {
+            console.error('Logout failed');
+        }
+    } catch (err) {
+        console.error('Logout error:', err);
+    }
+}
 
-    // Add click tracking for external links (optional)
-    document.querySelectorAll('a[target="_blank"]').forEach(link => {
-        link.addEventListener('click', () => {
-            // You could add analytics tracking here
-            console.log('External link clicked:', link.href);
-        });
-    });
-}); 
+// Initialize any support page specific functionality
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Support page loaded');
+});

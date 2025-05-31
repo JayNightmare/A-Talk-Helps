@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Talking Helps</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+<body>
+    <main id="login-container">
+        <div class="login-card">
+            <h1>Welcome to Talking Helps</h1>
+            <p class="subtitle">A safe space to share your thoughts</p>
+
+            <div id="login-section" class="auth-section">
+                <h2>Login with Image Key</h2>
+                <p>Enter your unique image key to continue:</p>
+                <input type="text" id="login-key" placeholder="Enter your image key" maxlength="12">
+                <button id="login-btn" class="auth-btn">Login</button>
+                <p class="switch-text">Don't have an image key? <a href="#" id="show-signup">Get one here</a></p>
+            </div>
+
+            <div id="signup-section" class="auth-section hidden">
+                <h2>Get Your Image Key</h2>
+                <p>Your unique image key will be generated automatically:</p>
+                <div id="generated-key" class="key-display">
+                    <span class="key-placeholder">Click generate to get your key</span>
+                </div>
+                <button id="generate-btn" class="auth-btn">Generate Image Key</button>
+                <p class="important-note">🔐 Important: Save this key! You'll need it to login again.</p>
+                <button id="signup-btn" class="auth-btn" disabled>Create Account</button>
+                <p class="switch-text">Already have a key? <a href="#" id="show-login">Login here</a></p>
+            </div>
+
+            <div id="error-message" class="error-msg"></div>
+        </div>
+    </main>
+
+    <script src="./scripts/login.js"></script>
+</body>
+</html>

@@ -36,10 +36,11 @@ function renderTabContent(tab, data) {
     if (!data || data.length === 0) {
         tabContent.innerHTML = `
             <div class="empty-state">
+                <span>📭</span>
                 <p>You haven't ${tab === 'posts' ? 'posted anything' : 
                     tab === 'comments' ? 'commented on anything' : 
                     'liked anything'} yet.</p>
-                ${tab === 'posts' ? '<a href="/" class="post-submit-btn">Write your first post</a>' : ''}
+                ${tab === 'posts' ? '<a href="./index.html" class="support-btn">Write your first post</a>' : ''}
             </div>
         `;
         return;
@@ -48,45 +49,44 @@ function renderTabContent(tab, data) {
     tabContent.innerHTML = data.map(item => {
         if (tab === 'posts') {
             return `
-                <div class="profile-item" data-id="${item._id}">
-                    <div class="profile-item-header">
-                        <span class="timestamp">${formatTimestamp(item.createdAt)}</span>
-                        <div class="profile-item-actions">
-                            <button onclick="editPost('${item._id}')">Edit</button>
-                            <button class="delete" onclick="deletePost('${item._id}')">Delete</button>
-                        </div>
+                <div class="activity-card" data-id="${item._id}">
+                    <div class="activity-header">
+                        <span class="activity-type">📝 Post</span>
+                        <span class="activity-timestamp">${formatTimestamp(item.createdAt)}</span>
                     </div>
-                    <div class="profile-item-content">${escapeHtml(item.content)}</div>
-                    <div class="profile-item-stats">
-                        <span>${item.likes?.length || 0} likes</span>
-                        <span>${item.commentCount || 0} comments</span>
+                    <div class="activity-content">${escapeHtml(item.content)}</div>
+                    <div class="activity-meta">
+                        <span>❤️ ${item.likes?.length || 0} likes</span>
+                        <span>💬 ${item.commentCount || 0} comments</span>
+                        <button onclick="editPost('${item._id}')" style="background: none; border: none; color: var(--discord-accent); cursor: pointer;">✏️ Edit</button>
+                        <button onclick="deletePost('${item._id}')" style="background: none; border: none; color: var(--discord-red); cursor: pointer;">🗑️ Delete</button>
                     </div>
                 </div>
             `;
         } else if (tab === 'comments') {
             return `
-                <div class="profile-item" data-id="${item._id}">
-                    <div class="profile-item-header">
-                        <span class="timestamp">${formatTimestamp(item.createdAt)}</span>
-                        <div class="profile-item-actions">
-                            <button class="delete" onclick="deleteComment('${item._id}')">Delete</button>
-                        </div>
+                <div class="activity-card" data-id="${item._id}">
+                    <div class="activity-header">
+                        <span class="activity-type">💬 Comment</span>
+                        <span class="activity-timestamp">${formatTimestamp(item.createdAt)}</span>
                     </div>
-                    <div class="profile-item-content">${escapeHtml(item.content)}</div>
-                    <div class="profile-item-context">
-                        On post: ${escapeHtml(item.parentPostContent || 'Post not found')}
+                    <div class="activity-content">${escapeHtml(item.content)}</div>
+                    <div class="activity-meta">
+                        <span>On: ${escapeHtml(item.parentPostContent || 'Post not found')}</span>
+                        <button onclick="deleteComment('${item._id}')" style="background: none; border: none; color: var(--discord-red); cursor: pointer;">🗑️ Delete</button>
                     </div>
                 </div>
             `;
         } else { // likes
             return `
-                <div class="profile-item" data-id="${item._id}">
-                    <div class="profile-item-header">
-                        <span class="timestamp">${formatTimestamp(item.createdAt)}</span>
+                <div class="activity-card" data-id="${item._id}">
+                    <div class="activity-header">
+                        <span class="activity-type">❤️ Liked Post</span>
+                        <span class="activity-timestamp">${formatTimestamp(item.createdAt)}</span>
                     </div>
-                    <div class="profile-item-content">${escapeHtml(item.content)}</div>
-                    <div class="profile-item-context">
-                        By: ${escapeHtml(item.alias)}
+                    <div class="activity-content">${escapeHtml(item.content)}</div>
+                    <div class="activity-meta">
+                        <span>By: ${escapeHtml(item.alias)}</span>
                     </div>
                 </div>
             `;
@@ -97,17 +97,52 @@ function renderTabContent(tab, data) {
 // Edit post
 async function editPost(postId) {
     const postElement = document.querySelector(`[data-id="${postId}"]`);
-    const content = postElement.querySelector('.profile-item-content').textContent;
+    const content = postElement.querySelector('.activity-content').textContent;
     
     postElement.innerHTML = `
-        <div class="profile-item-edit">
-            <textarea class="edit-text">${escapeHtml(content)}</textarea>
-            <div class="edit-actions">
-                <button onclick="saveEdit('${postId}')">Save</button>
-                <button onclick="cancelEdit('${postId}')">Cancel</button>
+        <div class="activity-header">
+            <span class="activity-type">✏️ Editing Post</span>
+        </div>
+        <div class="edit-container">
+            <textarea class="edit-text" style="
+                width: 100%;
+                min-height: 100px;
+                padding: 0.75rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 4px;
+                background-color: var(--discord-darkest);
+                color: var(--discord-light);
+                margin-bottom: 1rem;
+                resize: vertical;
+                font-family: inherit;
+            ">${escapeHtml(content)}</textarea>
+            <div class="edit-actions" style="display: flex; gap: 0.5rem;">
+                <button onclick="saveEdit('${postId}')" style="
+                    background-color: var(--discord-accent);
+                    color: var(--discord-lighter);
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: 500;
+                ">💾 Save Changes</button>
+                <button onclick="cancelEdit('${postId}')" style="
+                    background-color: var(--discord-darker);
+                    color: var(--discord-light);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    padding: 0.5rem 1rem;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: 500;
+                ">❌ Cancel</button>
             </div>
         </div>
     `;
+
+    // Focus the textarea
+    const textarea = postElement.querySelector('.edit-text');
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
 }
 
 // Save edit
@@ -223,9 +258,26 @@ function formatTimestamp(timestamp) {
 
 function showError(message) {
     tabContent.innerHTML = `
-        <div class="error-state">
-            <p>${escapeHtml(message)}</p>
-            <button onclick="loadTabContent(currentTab)">Try Again</button>
+        <div class="error-state" style="
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--discord-red);
+        ">
+            <span style="
+                font-size: 3rem;
+                display: block;
+                margin-bottom: 1rem;
+            ">⚠️</span>
+            <p style="margin-bottom: 1.5rem;">${escapeHtml(message)}</p>
+            <button onclick="loadTabContent(currentTab)" style="
+                background-color: var(--discord-accent);
+                color: var(--discord-lighter);
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 500;
+            ">🔄 Try Again</button>
         </div>
     `;
 }
@@ -246,5 +298,22 @@ tabButtons.forEach(button => {
     });
 });
 
+// Logout function
+async function handleLogout() {
+    try {
+        const response = await fetch('/api/auth/logout', {
+            method: 'POST'
+        });
+        
+        if (response.ok) {
+            window.location.href = '/login';
+        } else {
+            console.error('Logout failed');
+        }
+    } catch (err) {
+        console.error('Logout error:', err);
+    }
+}
+
 // Initialize the app
-init(); 
+init();

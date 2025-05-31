@@ -3,26 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talking Helps - Your Profile</title>
+    <title>Profile - Talking Helps</title>
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/profile.css">
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-brand">Talking Helps</div>
-        <div class="nav-links">
-            <a href="./index.html" class="nav-link">Home</a>
-            <a href="./support.html" class="nav-link">Support</a>
-            <a href="./profile.html" class="nav-link active">Profile</a>
+    <aside id="sidebar">
+        <div class="nav-brand">💬 Talking Helps</div>
+        <nav class="nav-links">
+            <a href="./index.html" class="nav-link">
+                <span>🏠</span> Home
+            </a>
+            <a href="./support.html" class="nav-link">
+                <span>🆘</span> Support
+            </a>
+            <a href="./profile.html" class="nav-link active">
+                <span>👤</span> Profile
+            </a>
+        </nav>
+        <div class="nav-footer">
+            <button id="logout-btn" class="nav-link" onclick="handleLogout()">
+                <span>🚪</span> Logout
+            </button>
         </div>
-    </nav>
+    </aside>
 
     <main id="main-content">
-        <h2>Your Profile</h2>
+        <header class="content-header">
+            <h1>Your Profile</h1>
+        </header>
+
+        <section id="profile-info">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-details">
+                        <h2>Anonymous User</h2>
+                        <p>Current Alias: <span id="current-alias">Loading...</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="profile-tabs">
-            <button class="tab-btn active" data-tab="posts">My Posts</button>
-            <button class="tab-btn" data-tab="comments">My Comments</button>
-            <button class="tab-btn" data-tab="likes">My Likes</button>
+            <button class="tab-btn active" data-tab="posts">
+                <span>📝</span> My Posts
+            </button>
+            <button class="tab-btn" data-tab="comments">
+                <span>💬</span> My Comments
+            </button>
+            <button class="tab-btn" data-tab="likes">
+                <span>❤️</span> My Likes
+            </button>
         </div>
 
         <div id="tab-content">
@@ -30,6 +62,6 @@
         </div>
     </main>
 
-    <script src="/scripts/profile.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
-</html> 
+</html>

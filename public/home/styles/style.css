@@ -1,0 +1,49 @@
+/* * Header * */
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #cccccc;
+}
+
+/* // */
+
+/* * Quick Nav Options * */
+.quick-nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 20px 0;
+
+    ul {
+        list-style-type: none;
+        color: #fff;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        li a:hover {
+            color: #ff9800;
+        }
+    }
+}

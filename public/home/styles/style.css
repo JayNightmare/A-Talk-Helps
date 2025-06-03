@@ -54,10 +54,12 @@ header p {
     position: relative;
     text-align: center;
 
-    box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("https://picsum.photos/800/600") center/cover no-repeat;
+
+    box-shadow: inset 0 0 20px 80px rgba(0, 0, 0, 0.5);
 }
 
-.make-post::before {
+/* .make-post::before {
     background: url("https://picsum.photos/800/600") fixed center/cover no-repeat;
     -webkit-filter: blur(10px);
     filter: blur(10px);
@@ -68,7 +70,7 @@ header p {
     position: absolute;
     top: 0;
     left: 0;
-}
+} */
 
 .make-post .form-group {
     color: #ffffff;
@@ -194,22 +196,24 @@ header p {
 
 /* * About Us Section * */
 :root {
-    --primary-bg: #0a1f3d;        /* deep navy */
-    --accent-color: #f7c948;    /* warm gold */
-    --text-light: #ffffff;       /* bright text */
-    --text-dark: #333333;        /* for disclaimer text */
-    --card-bg: #1e2d47;          /* slightly lighter navy for cards */
-    --card-hover-bg: #27364f;    /* hover shade */
-    --disclaimer-bg: #ffffff;    /* white background */
-    --disclaimer-text: #333333;  /* dark text */
+    --primary-bg: #0a1f3d;          /* deep navy */
+    --accent-color: #f7c948;        /* warm gold */
+    --text-light: #ffffff;          /* bright text */
+    --text-dark: #333333;           /* for disclaimer text */
+    --card-bg: #1e2d47;             /* slightly lighter navy for cards */
+    --card-hover-bg: #27364f;       /* hover shade */
+    --disclaimer-bg: #ffffff;       /* white background */
+    --disclaimer-text: #333333;     /* dark text */
 }
 
 .about-section {
-    background: var(--primary-bg);
+    background: transparent;
     color: var(--text-light);
     padding: 4rem 2rem;
     text-align: center;
     overflow: hidden;
+
+    border-radius: 10px;;
 }
 
 .about-heading {

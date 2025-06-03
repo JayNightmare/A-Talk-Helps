@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../global/styles/sidebar.css">
     <link rel="stylesheet" href="../styles/style.css">
     <script src="../js/script.js" defer></script>
+    <script src="../../global/js/sidebar.js" defer></script>
     <link rel="icon" href="../../global/assets/favicon.icon" type="image/x-icon">
 </head>
 <body>
@@ -42,7 +43,7 @@
             </nav>
         </header>
 
-        <div>
+        <section aria-label="Make a post">
             <div class="make-post">
                 <div class="post-form-container">
                     <div class="left-panel">
@@ -104,9 +105,81 @@
                     <!-- Posts will be dynamically added here -->
                 </ul>
             </div>
-        </div>
-    </div>
+        </section>
 
+        <section class="about-section" aria-label="About our safe space" id="aboutSection">
+            <h2 class="about-heading">About Our Safe Space</h2>
+
+            <div class="card-container">
+                <!-- ? Mission Card ? -->
+                <div class="info-card mission-card">
+                    <div class="card-front">
+                        <h3>Our Mission</h3>
+                        <p>We're here to help you speak your truth-anonymously, without fear or judgement</p>
+                    </div>
+                    <div class="card-back">
+                        <p>
+                            Too often, people feel trapped, unable to open up to friends, family, or even themselves. Our goal is to provide a judgement-free platform where you can share your feelings, connect with others, and feel heard. No names. No faces, Just pure, unfiltered expression.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- ? Anonymous Posting Card ? -->
+                <div class="info-card anonymous-card">
+                    <div class="card-front">
+                        <h3>Why Anonymous?</h3>
+                        <p>Share what's on your mind, anonymously and safely</p>
+                    </div>
+                    <div class="card-back">
+                        <p>
+                            Removing your name and personal identifiers allows you to focus on honesty, not appearances. Anonymity means you can get real feedback, encouragement, and understanding without worrying about judgement or stigma. Your identity stays yours, but your story reaches out to others who care and may be feeling the same way as you.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ? Safe Space Card ? -->
+                <div class="info-card safe-space-card">
+                    <div class="card-front">
+                        <h3>Join the Conversation</h3>
+                        <p>Find empathy, support, and someone who just gets it</p>
+                    </div>
+                    <div class="card-back">
+                        <p>
+                            Whether you're dealing with stress, loneliness, or just need to vent, this is your corner of calm. Our community is moderated to keep things respectful. You'll find threads on mental health, coping strategies, and real stories from real people. Take a seat, somone is listening, and you are not alone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ! Disclaimer Card ! -->
+            <div class="disclaimer-container">
+                <button id="toggleDisclaimer" class="disclaimer-button" title="disclaimer button toggle">
+                    Read Important Disclaimer
+                </button>
+                <div id="disclaimerContent" class="disclaimer-content hidden">
+                    <p>
+                        <strong>Disclaimer:</strong> This platform is designed to provide a
+                        supportive, anonymous outlet and is <em>not</em> a substitute for
+                        professional therapy or medical advice. If you ever feel like you might
+                        harm yourself or someone else, please reach out immediately to a mental
+                        health professional or call emergency services (e.g., 911 in the U.S.,
+                        999 in the U.K., or your local crisis hotline).
+                    </p>
+                    <p>
+                        You are never alone. If you need urgent help, consider:
+                        <ul>
+                        <li>National Suicide Prevention Lifeline (U.S.): <a href="tel:988">988</a></li>
+                        <li>Samaritans (U.K. &amp; Ireland): <a href="tel:116123">116123</a></li>
+                        <li>Other international hotlines: <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a></li>
+                        </ul>
+                    </p>
+                    <p>
+                        If you're in crisis or need immediate emtional support, please don't heistate to reach out now.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
     <footer>
         <p>&copy; 2025 Talking Helps | All rights reserved. Follow us on:
             <a href="https://x.com/JayNightmar3" target="_blank" rel="noopener">Twitter</a> |

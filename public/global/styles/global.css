@@ -15,11 +15,23 @@ body {
     color: #ffffff;
 }
 
+/* // */
+
+/* * Main Content Div * */
+
 .shell {
     margin-left: 40px;
     padding: 20px;
     width: calc(100% - 40px);
 }
+
+/* // */
+
+.hidden {
+    display: none;
+}
+
+/* // */
 
 /* * Footer * */
 footer {

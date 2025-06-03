@@ -191,3 +191,187 @@ header p {
 }
 
 /* // */
+
+/* * About Us Section * */
+:root {
+    --primary-bg: #0a1f3d;        /* deep navy */
+    --accent-color: #f7c948;    /* warm gold */
+    --text-light: #ffffff;       /* bright text */
+    --text-dark: #333333;        /* for disclaimer text */
+    --card-bg: #1e2d47;          /* slightly lighter navy for cards */
+    --card-hover-bg: #27364f;    /* hover shade */
+    --disclaimer-bg: #ffffff;    /* white background */
+    --disclaimer-text: #333333;  /* dark text */
+}
+
+.about-section {
+    background: var(--primary-bg);
+    color: var(--text-light);
+    padding: 4rem 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.about-heading {
+    font-size: 2.75rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.info-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    width: 260px;
+    height: 320px;
+    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.6s ease;
+
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+.info-card .card-front,
+.info-card .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* ! Front Face ! */
+.info-card .card-front {
+    background: var(--card-bg);
+    color: var(--text-light);
+    z-index: 2;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ! Back Face (hidden until flipped) ! */
+.info-card .card-back {
+    background: var(--accent-color);
+    color: var(--text-dark);
+    transform: rotateY(180deg);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* ! Flip on Hover ! */
+.info-card:hover .card-front {
+    transform: rotateY(180deg);
+    transition: transform 0.6s ease;
+}
+
+.info-card:hover .card-back {
+    transform: rotateY(0deg);
+    transition: transform 0.6s ease;
+}
+
+.mission-card .card-front {
+    background: linear-gradient(135deg, #1e2d47, #263551);
+}
+
+.anonymous-card .card-front {
+    background: linear-gradient(135deg, #27364f, #2e3c58);
+}
+
+.safe-space-card .card-front {
+    background: linear-gradient(135deg, #1c2b44, #223145);
+}
+
+/* * Disclaimer Container * */
+.disclaimer-container {
+    margin-top: 3rem;
+}
+
+.disclaimer-button {
+    background-color: var(--accent-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.disclaimer-button:hover {
+    background-color: #e5b53a;
+}
+
+.disclaimer-content {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--disclaimer-bg);
+    color: var(--disclaimer-text);
+    border-radius: 5px;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.disclaimer-content p,
+.disclaimer-content ul {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.disclaimer-content ul {
+    padding-left: 1.25rem;
+}
+
+.disclaimer-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.disclaimer-content a:hover {
+    text-decoration: underline;
+}
+
+.disclaimer-content.show {
+    max-height: 400px;
+    padding: 1rem;
+}
+
+@media (max-width: 900px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

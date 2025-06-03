@@ -11,12 +11,20 @@
 </head>
 <body>
     <nav id="sidebar" class="sidebar" role="navigation" aria-label="Main navigation" aria-expanded="false">
-        <button id="closeSidebar" aria-label="Close sidebar">Close</button>
-        <ul id="sidebar-menu">
-            <li><a href="#" aria-label="Go to Home page">Home</a></li>
-            <li><a href="#" aria-label="Go to Profile page">Profile</a></li>
-            <li><a href="#" aria-label="Go to Settings page">Settings</a></li>
-        </ul>
+        <div class="sidebar-content" aria-hidden="true">
+            <div>
+                <button id="closeSidebar" aria-label="Close sidebar">Close</button>
+                <ul id="sidebar-menu">
+                    <li><a href="#" aria-label="Go to Home page">Home</a></li>
+                    <li><a href="#" aria-label="Go to Profile page">Profile</a></li>
+                    <li><a href="#" aria-label="Go to Community page">Community</a></li>
+                    <li><a href="#" aria-label="Go to Settings page">Settings</a></li>
+                </ul>
+            </div>
+            <div id="loginStatus" class="login-status" aria-live="polite">
+                <p>Welcome, Guest! <br><a href="#" aria-label="Login">Login</a> | <a href="#" aria-label="Register">Register</a></p>
+            </div>
+        </div>
         <button id="openSidebar" aria-label="Open sidebar menu"></button>
     </nav>
     
@@ -24,20 +32,85 @@
         <header>
             <h1>Talking Helps</h1>
             <p>Welcome to Talking Helps, a platform designed to provide support and resources for mental health.</p>
+            <p>There's no need for a name, on here we respect the right for privacy and the protection of personal information. </p>
             <nav aria-label="Quick navigation" class="quick-nav" role="navigation">
                 <ul>
-                    <li><a href="#" aria-label="Go to Home page">Home</a></li>
-                    <li><a href="#" aria-label="Go to Profile page">Profile</a></li>
-                    <li><a href="#" aria-label="Go to Settings page">Settings</a></li>
+                    <li><a href="#" aria-label="Go to ??? page">Profile</a></li>
+                    <li><a href="#" aria-label="Go to ??? page">Community</a></li>
+                    <li><a href="#" aria-label="Go to ??? page">About Us</a></li>
                 </ul>
             </nav>
         </header>
+
+        <div>
+            <div class="make-post">
+                <div class="post-form-container">
+                    <div class="left-panel">
+                        
+                        <form id="postForm" action="#" method="post" aria-label="Post submission form" class="post-form">
+                            <div class="form-group">
+                                <label for="postContent">Lets Talk About It</label>
+                                <p>Share your thoughts, feelings, and experiences</p>
+                                <textarea id="postContent" name="content" rows="4" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="right-panel">
+                        <div class="options">
+                            <div class="option" aria-label="category options">
+                                <label for="postCategory">Category:</label>
+                                <select id="postCategory" name="category" aria-label="Select post category">
+                                    <option value="anxiety-worry">Anxiety & Worry</option>
+                                    <option value="">Saddness & Depression</option>
+                                    <option value="">Anger & Frustration</option>
+                                    <option value="">Stress & Burnout</option>
+                                    <option value="">Loneliness & Isolation</option>
+                                    <option value="">Relationships & Connection</option>
+                                    <option value="">Self-Esteem & Confidence</option>
+                                    <option value="">Grief & Loss</option>
+                                    <option value="">Motivation Purpose</option>
+                                    <option value="">Motivation & Purpose</option>
+                                    <option value="">Mindfulness & Coping</option>
+                                    <option value="">Identity & Belonging</option>
+                                    <option value="">Hope & Positivity</option>
+                                </select>
+                            </div>
+                            <div class="option" ara-label="visibility options">
+                                <label for="postVisibility">Visibility:</label>
+                                <select id="postVisibility" name="visibility" aria-label="Select post visibility">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="anonymous">Anonymous</option>
+                                </select>
+                            </div>
+                            <div class="option tags-options" aria-label="tag options">
+                                <label for="postTags">Tags:</label>
+                                <input type="text" id="postTags" name="tags" placeholder="e.g., mental health, support" aria-label="Enter post tags">
+                                <button type="button" id="addTagButton" aria-label="Add tag">Add Tag</button>
+                                <div id="tagList" class="tag-list" aria-label="List of tags">
+                                    <!-- Tags will be dynamically added here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Post</button>
+                <div id="postStatus" class="status-message" aria-live="polite"></div>
+            </div>
+
+            <div>
+                <h3>Recent Posts</h3>
+                <ul id="postList" aria-label="List of recent posts">
+                    <!-- Posts will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Talking Helps | All rights reserved. Follow us on:
             <a href="https://x.com/JayNightmar3" target="_blank" rel="noopener">Twitter</a> |
-            <a href="https://github.com/JayNightmare/Talking-Helps" target="_blank" rel="noopener">GitHub</a> |
+            <a href="https://github.com/JayNightmare/A-Talk-Helps" target="_blank" rel="noopener">GitHub</a> |
             <a href="https://instagram.com/jordan_s_bell" target="_blank" rel="noopener">Instagram</a>
         </p>
     </footer>

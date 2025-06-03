@@ -1,3 +1,13 @@
+/* * Space out content * */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 /* Sidebar styles */
 .sidebar {
     position: fixed;
@@ -95,4 +105,29 @@
 .sidebar ul li a:hover {
     background-color: #555;
     border-radius: 4px;
+}
+
+/* * Login Status * */
+.login-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.login-status p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.login-status a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ff5722;
+    }
 }

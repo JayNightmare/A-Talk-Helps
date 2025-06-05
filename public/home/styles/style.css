@@ -87,9 +87,8 @@ header p {
 }
 
 .make-post .post-form {
-    width: 100%;
-    max-width: 800px;
-
+    
+    max-width: 1000px;
 }
 
 .make-post .post-form-container {
@@ -123,6 +122,12 @@ header p {
     font-family: 'Poppins', sans-serif;
 }
 
+.make-post #postTitle {
+    max-height: 100px !important;
+    min-height: 50px !important;
+    height: 50px;
+}
+
 .make-post button[type="submit"] {
     background-color: #ff9800;
     color: #000;
@@ -149,6 +154,9 @@ header p {
     flex-direction: row;
     padding-top: 10px;
     gap: 0.75rem;
+
+    max-width: 580px;
+    width: 580px;
 
     border-top: 1px solid #000;
 }
@@ -202,8 +210,8 @@ header p {
     --text-dark: #333333;           /* for disclaimer text */
     --card-bg: #1e2d47;             /* slightly lighter navy for cards */
     --card-hover-bg: #27364f;       /* hover shade */
-    --disclaimer-bg: #ffffff;       /* white background */
-    --disclaimer-text: #333333;     /* dark text */
+    --disclaimer-bg: #0a1f3d;       /* white background */
+    --disclaimer-text: #fff;     /* dark text */
 }
 
 .about-section {
@@ -245,7 +253,7 @@ header p {
 .info-card {
     background: var(--card-bg);
     border-radius: 10px;
-    width: 260px;
+    width: 300px;
     height: 320px;
     perspective: 1000px;
     position: relative;
@@ -369,7 +377,7 @@ header p {
 }
 
 .disclaimer-content.show {
-    max-height: 400px;
+    max-height: 100%;
     padding: 1rem;
 }
 

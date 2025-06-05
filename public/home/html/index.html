@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script src="../js/script.js" defer></script>
     <script src="../../global/js/sidebar.js" defer></script>
+    <script src="../../global/js/post.js" defer></script>
     <link rel="icon" href="../../global/assets/favicon.icon" type="image/x-icon">
 </head>
 <body>
@@ -47,12 +48,18 @@
             <div class="make-post">
                 <div class="post-form-container">
                     <div class="left-panel">
-                        
                         <form id="postForm" action="#" method="post" aria-label="Post submission form" class="post-form">
                             <div class="form-group">
                                 <label for="postContent">Lets Talk About It</label>
                                 <p>Share your thoughts, feelings, and experiences</p>
-                                <textarea id="postContent" name="content" rows="4" required></textarea>
+                                <div>
+                                    <div class="form-title" id="postTitleContainer">
+                                        <input type="text" id="postTitle" name="title" placeholder="Enter post title" required aria-label="Post title">
+                                    </div>
+                                    <div class="form-content" id="postContentContainer">
+                                        <textarea id="postContent" placeholder="Share your thoughts" name="content" rows="4" required></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

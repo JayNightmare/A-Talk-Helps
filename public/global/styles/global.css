@@ -4,6 +4,8 @@
     box-sizing: border-box;
     -webkit-user-select: none;
     user-select: none;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -54,4 +56,38 @@ footer a {
 }
 footer a:hover {
     text-decoration: none;
+}
+
+/* Styling for the tag list */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0;
+    list-style-type: none;
+}
+
+.tag-list li {
+    background-color: #f7c948;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-list li button {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.tag-list li button:hover {
+    color: #e68900;
 }
